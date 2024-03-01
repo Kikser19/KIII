@@ -1,0 +1,311 @@
+ako e klasifikacija i ima poise od dve grupi moze da e softmax
+vo model.add(Dense(1,activation = 'softmax')) , vo sprotivno e sigmoid
+ako e regresija e linear model.add(Dense(1,activation = 'linear'))
+
+BAGGING e koga ima decision tree i podelbite na drvoto se pravat vrz osnova na nekoi
+informacii za atributite zarazlika od normalnoto kade e random
+RANDOM FOREST e koga se pravat povekje drva kade shto glavniot dataset se deli na razlicni
+i posle toa se odreduva koja kombinacija od tie drva e najdobra
+Tuning Random Forests
+• Random forest models have multiple hyper-parameters to tune:
+1. the number of predictors to randomly select at each split
+2. the total number of trees in the ensemble
+3. the minimum leaf node size 
+
+BOOSTING e koga se pravat drvata na prethodniot princip no cekor po cekor kade novoto drvo se formira 
+od zaklucocite i greskite od prethodnoto drvo
+GRADIENT BOOST 
+izbirame lambda(learning rate ),ako e mnogu malo sporo ke uci ako e mnogu golemo nemame garancija deka ke stigne do posakuvaniot optimumot
+XGBOOST - unapredena verzija na gradient boost
+BAYES CLASSIFIER
+koristi baesovi formuli za da presmeta verojatnost so pomosh na zavisnostite pomegju atributite
+
+NEURAL NETWORKS
+Za odredeni inputi ima nevroni vo hidden layers kade shto se vrshi sumarizacija na weights(kolku odreden input vlijae vrz outputot),
+i otkako ke se presmetaat site(moze da ima povekje sloevi) na rezultatot se izvrsuva funkcija so koja se voveduva nelinearnost za podobro da moze da gi sledi tockite grafikot
+Loss Function: Takes all of these results and averages them and tells us how bad
+or good the computer or those weights are. 
+Output Type - Output Distribution - Output layer - Cost Function
+Binary - Bernoulli - Sigmoid - Binary Cross Entropy
+Discrete - Multinoulli - Softmax - Cross Entropy
+Continuous - Gaussian - Linear - MSE (Mean Squared Error)
+Continuous Arbitrary -
+Shallow(koga ima eden hidden layer so povekje nevroni)-moze da predzvika overfiting
+Deep(poise hidden layers so pomalce nevroni)
+DROPOUT- koga nekoi weigths vo nevronskata mrezha se stavaat na nula za da se sprechi overfitting
+Setting the Learning Rate
+• Small learning rate converges slowly and gets stuck in false local minima
+• Large learning rates overshoot, become unstable and diverge
+• Stable learning rates converge smoothly and avoid local minima 
+BATCH - se izbira koga ke se update weigths -moze da se izgubi mnogu vreme ako e mnogu cesto
+REGULARIZATION(problem so overfitting)
+a)DROPOUT
+b)EARLY STOPPING - go stopiras pred overfitting
+
+In a fully connected layer each unit is
+connected to all units of the previous
+layers.
+Convolutional Neural Network
+• In a convolutional layer, each unit is
+connected to a constant number of
+units in a local region of the previous
+layer.
+• Furthermore, in a convolutional layer,
+the units all share the weights for these
+connections, as indicated by the shared
+line
+-types.
+se koristi koga ima pregolem input i treba da se namalat dimenziite no da se zadrzat glavnite parametri za da moze da se obraboti polesno
+pravi takanarecena kompresija mnogu se koristi za sliki i za text(se zemaat grupi od text i spored vrednosta na vektorot kolku e znacaen se zima najgolemata vrednost od grupata)
+Three Stages of a
+Convolutional Layer
+Convolution stage
+• Nonlinearity: a nonlinear
+transform such as rectified
+linear or tanh
+• Pooling: output a summary
+statistics of local input, such
+as max pooling and average
+pooling
+
+Pooling
+• Common pooling operations:
+– Max pooling: reports the maximum output within a rectangular
+neighborhood.
+– Average pooling: reports the average output of a rectangular neighborhood
+(possibly weighted by the distance from the central pixel).
+
+Moze da se koristat povekje konvoluciski sloevi za da se postigne pogolem efekt
+Autoencoders
+An Autoencoder is a feedforward neural
+network that learns to predict the input
+itself in the output.
+�($) = �($)
+• The input-to-hidden part corresponds
+to an encoder
+• The hidden-to-output part corresponds
+to a decoder.
+Deep Autoencoders
+• A deep Autoencoder is constructed
+by extending the encoder and
+decoder of autoencoder with
+multiple hidden layers.
+• Gradient vanishing problem: the
+gradient becomes too small as it
+passes back through many layers
+
+Recurrent Neural Network (RNN)
+Koristi memorija shto zacuvuva megjurezultati i se koristat za ponatamoshni presmetki
+
+Long Short-term memory
+4 inputs 1 output
+• LSTMs contain information outside the normal flow of the
+recurrent network in a gated cell.
+• Information can be stored in, written to, or read from a cell, much
+like data in a computer’s memory.
+• The cells learn when to allow data to enter, leave or be deleted
+through the iterative process of making guesses, back-propagating
+error, and adjusting weights via gradient descent
+NLP
+se koristi vo biznisite za avtomatizacija na ispituvanjeto na komentarite i pobaruvanjata na korisnicite
+bidejki vo ogromni biznisi tesko e manuelno.
+Za NLP predizvik se nekoi specificni pravila vo jazicite kako i sarkazmot i ironijata vo govorenjeto
+Natural Language Processing: Some basic terms:
+• Syntax: the allowable structures in the language: sentences,
+phrases, affixes (-ing, -ed, -ment, etc.).
+• Semantics: the meaning(s) of texts in the language.
+• Part-of-Speech (POS): the category of a word (noun, verb,
+preposition etc.).
+• Bag-of-words (BoW): a featurization that uses a vector of word
+counts (or binary) ignoring order.
+• N-gram: for a fixed, small N (2-5 is common), an n-gram is a
+consecutive sequence of words in a text. 
+
+BOW
+go odreduva id-to na sekoj zbor vo recenicata
+gi zema poziciite na zborovite sortirani spored id i taka pravi vektor
+In practice this would be stored as a sparse vector of (id, count)s:
+– (1,2),(3,1),(5,1),(12,1),(14,1)
+N-grams
+Sentence: The cat sat on the mat
+2-grams: the-cat, cat-sat, sat-on, on-the, the-mat
+Notice how even these short n-grams “make sense” as linguistic
+units. For the other sentence we would have different features:
+Sentence: The mat sat on the cat
+2-grams: the-mat, mat-sat, sat-on, on-the, the-cat
+We can go still further and construct 3-grams:
+Sentence: The cat sat on the mat
+3-grams: the-cat-sat, cat-sat-on, sat-on-the, on-the-mat
+Which capture still more of the meaning:
+Sentence: The mat sat on the cat
+3-grams: the-mat-sat, mat-sat-on, sat-on-the, on-the-cat
+
+N-gramite so vrednost n=1,2,3 gi pokrivaat povekje od 80% od kombinaciite za recnikot
+SKIP_GRAMS
+se koristi za da se analizira kontekstot na zborovite vo rechenicata kade za odreden zbor se pravi set od zborovi koristejki opredelen offset za da se odredi kontekstot
+GRAMMARS
+se koristi za da se zapazat gramatickite pravila vo jazikot kako na primer redosedot na odreden tip na zborovi vo rechenicata
+ova se koristi vo nameentityrecognition
+zborovite vo rechenicata se pretstavuvaat so pomosh na drva vo ovoj format
+Grammars comprise rules that specify acceptable sentences in the language:
+(S is the sentence or root node) “the cat sat on the mat”
+• S -> NP VP
+• S -> NP VP PP (the cat) (sat) (on the mat)
+• NP -> DT NN (the cat), (the mat)
+• VP -> VB NP
+• VP -> VBD
+• PP -> IN NP
+• DT -> “the”
+• NN ->“mat”, “cat”
+• VBD -> “sat”
+• IN -> “on”
+How do we have usable meaning in a computer?
+so pomosh na WORDNET koj sodrzi lista od sinonimi za i hipernimi za sekoj zbor
+Word2vec limitation
+• This notion of similarity in Word2vec, however, only takes us so far.
+• The main problem of Word2Vec is that it provides a single representation
+for a word that is the same regardless of context.
+• So, words like “bank” with several different senses, for example river bank
+and investment bank, will end up with a representation which is an
+average of the senses, not representing either one well.
+• That’s why more complex Contextual Word Embeddings (ELMo) were
+developed
+• And then Transformers (BERT, GPT) were invented
+Vector Embedding of Words
+Instead of entire documents, Word2vec uses words a few positions away
+from each center word. The pairs of center word/context word are called
+“skip-grams.”
+“It was a bright cold day in April, and the clocks were striking”
+Center word: red
+Context words: blue
+Transfer Learning Advantages
+• Helps solve complex real-world problems with several constraints
+• Tackle problems like having little or almost no labeled data
+availability
+• Ease of transferring knowledge from one model to another based
+on domains and tasks
+• Provides a hope for a possible path towards achieving Artificial
+General Intelligence some day in the future!
+• Typically transfer learning enables us to build more robust models
+which can perform a wide variety of tasks.
+Training
+• Transformers typically undergo semi-supervised learning involving
+unsupervised pretraining followed by supervised fine-tuning.
+• Pretraining is typically done on a much larger dataset than finetuning, due to the restricted availability of labeled training data.
+• Tasks for pretraining and fine-tuning commonly include:
+– next-sentence prediction
+– question answering
+– reading comprehension
+– sentiment analysis
+– paraphrasing
+The Transformer finds most of its applications in the field of
+natural language processing (NLP)
+• Many pretrained models such as GPT-3, GPT-2, BERT, XLNet, and
+RoBERTa demonstrate the ability of Transformers to perform a
+wide variety of such NLP-related tasks, and have the potential to
+find real-world applications. These may include:
+– machine translation
+– document summarization
+– document generation
+– named entity recognition (NER)
+– biological sequence analysis
+Language Modelling: Feed-forward Neural Net
+se koristi za da se predvidi naredniot zbor kade imame input del od rechenica(odreden window na primer 3 zbora i prviot se zamenuva so dobieniot za da se predvidi naredniot) i nekakva presmetka vo hidden layer
+Language Modelling: bigrams
+BIGRAM ISSUES?
+• Out-of-vocabulary items are 0 à kills the overall probability
+• Always need more context (e.g., trigram, 4-gram), but
+sparsity is an issue (rarely seen subsequences)
+• Storage becomes a problem as we increase window size
+• No semantic information conveyed by counts (e.g., vehicle vs car)
+Language Modelling : Feed-forward Neural Net
+FFNN ISSUES?
+FFNN STRENGTHS?
+• No sparsity issues (it’s okay if we’ve never seen a segment of words)
+• No storage issues (we never store counts)
+• Fixed-window size can never be big enough. Need more context.
+• Increasing window size adds many more weights
+• The weights awkwardly handle word position
+• No concept of time
+• Requires inputting entire context just to predict one word
+
+RNN
+se azuriraatt weigths se presmetuvaat vrz osnova na loss na outputot i nanazad se menuvaat weigthsot za da se namali lossot
+RNNs: Overview
+RNN ISSUES?
+RNN STRENGTHS?
+• Can handle infinite-length sequences (not just a fixed-window)
+• Has a “memory” of the context (thanks to the hidden layer’s recurrent loop)
+• Same weights used for all inputs, so word order isn’t skewed (like FFNN)
+• Slow to train (BPTT)
+• Due to ”infinite sequence”, gradients can easily vanish or explode
+• Has trouble actually making use of long-range context
+RNNs: Vanishing and Exploding Gradients (review)
+To address RNNs’ tricky nature with long-range context, we turned to
+an RNN variant named LSTMs (long short-term memory)
+But first, let’s recap what we’ve learned so far
+Long short-term memory (LSTM)
+namesto  hidden layer vo RNN se koristi memoriska kelija 
+kade nekoi vrenosti se brishat nekoi se dodavaat 
+LSTM ISSUES?
+LSTM STRENGTHS?
+• Almost always outperforms vanilla RNNs
+• Captures long-range dependencies shockingly well
+• Has more weights to learn than vanilla RNNs; thus,
+• Requires a moderate amount of training data (otherwise, vanilla
+RNNs are better)
+• Can still suffer from vanishing/exploding gradients
+Sequential Modelling
+IMPORTANT
+If your goal isn’t to predict the next item in a sequence, and you rather do
+some other classification or regression task using the sequence, then you can:
+• Train an aforementioned model (e.g., LSTM) as a language model
+• Use the hidden layers that correspond to each item in your sequence
+?
+Bi-directional (review)
+RNNs/LSTMs use the left-to-right context and sequentially
+process data.
+If you have full access to the data at testing time, why not
+make use of the flow of information from right-to-left, also?
+Sequence-to-Sequence (seq2seq)
+tuka pocnuva koristenjeto na sekvenca od tokeni bidejki preveduvanjeto zbor po zbor se pokazha neefikasno
+Seq2seq models are comprised of 2 RNNs: 1 encoder, 1 decoder
+Training occurs like RNNs typically do; the
+loss (from the decoder outputs) is calculated,
+and we update weights all the way to the
+beginning (encoder)
+Testing generates decoder outputs one word
+at a time, until we generate a <EOS> token.
+Each decoder’s ykapa becomes the input xi+1
+Rezultatot presmetan za da se predvidi prviot zbor ne se koristi za da se presmetaat drugite
+zatoa se voveduva attention layer
+Attention and Transformers
+Representing the input order (positional encoding)
+The transformer adds a vector to each input embedding. These vectors follow a specific
+pattern that the model learns, which helps it determine the position of each word, or the
+distance between different words in the sequence. The intuition here is that adding these
+values to the embeddings provides meaningful distances between the embedding vectors
+once they’re projected into Q/K/V vectors and during dot-product attention.
+Transformers, GPT-2, and BERT
+
+1. A transformer uses Encoder stack to model input, and uses Decoder stack
+to model output (using input information from encoder side).
+2. But if we do not have input, we just want to model the “next word”, we
+can get rid of the Encoder side of a transformer and output “next word”
+one by one. This gives us GPT.
+3. If we are only interested in training a language model for the input for
+some other tasks, then we do not need the Decoder of the transformer, that
+gives us BERT.
+
+
+
+
+P(disease = present) = 3/10
+P(disease = absent ) = 7/10
+P(Test = positive | disease = present) = 3/3
+P(Test = positive | disease = absent) = 1/7
+P(Test = positive) = ((3/3)(3/10)+(1/7)(7/10)) = 4/10
+
+P(Disease = Present | Test = positive) = ((3/3) * (3/10)) / (4/10) = 3/4
+P(Disease = Absent | Test = positive) = ((1/7) * (7/10)) / (4/10) = 1/4
+
